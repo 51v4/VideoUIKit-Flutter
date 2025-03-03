@@ -1,4 +1,4 @@
-import 'package:agora_rtm/agora_rtm.dart';
+/* import 'package:agora_rtm/agora_rtm.dart';
 
 class AgoraRtmChannelEventHandler {
   /// Occurs when you receive error events.
@@ -29,3 +29,4 @@ class AgoraRtmChannelEventHandler {
     this.onMemberCountUpdated,
   });
 }
+ */

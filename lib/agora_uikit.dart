@@ -42,6 +42,8 @@ export 'package:agora_rtc_engine/agora_rtc_engine.dart'
         StreamSubscribeState,
         RtmpStreamingEvent,
         UploadErrorReason;
+/* 
+// Hidden some code to remove Agora RTM
 export 'package:agora_rtm/agora_rtm.dart'
     show
         AgoraRtmChannelException,
@@ -61,16 +63,16 @@ export 'package:agora_rtm/agora_rtm.dart'
         RtmMessageType,
         RtmPeerOnlineState,
         RtmPeerSubscriptionOption,
-        RtmRemoteInvitationState;
+        RtmRemoteInvitationState; */
 export 'package:permission_handler/permission_handler.dart';
 
 export 'models/agora_channel_data.dart' show AgoraChannelData;
 export 'models/agora_connection_data.dart' show AgoraConnectionData;
 export 'models/agora_rtc_event_handlers.dart' show AgoraRtcEventHandlers;
-export 'models/agora_rtm_channel_event_handler.dart'
-    show AgoraRtmChannelEventHandler;
-export 'models/agora_rtm_client_event_handler.dart'
-    show AgoraRtmClientEventHandler;
+// export 'models/agora_rtm_channel_event_handler.dart'
+//     show AgoraRtmChannelEventHandler;
+// export 'models/agora_rtm_client_event_handler.dart'
+//     show AgoraRtmClientEventHandler;
 export 'src/agora_client.dart' show AgoraClient;
 export 'src/buttons/buttons.dart' show AgoraVideoButtons;
 export 'src/enums.dart';

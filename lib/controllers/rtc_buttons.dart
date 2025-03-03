@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:agora_uikit/controllers/session_controller.dart';
 import 'package:agora_uikit/models/agora_settings.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 
 /// Function to mute/unmute the microphone
 Future<void> toggleMute({required SessionController sessionController}) async {
@@ -50,10 +52,10 @@ Future<void> endCall({required SessionController sessionController}) async {
   }
   await sessionController.value.engine?.stopPreview();
   await sessionController.value.engine?.leaveChannel();
-  if (sessionController.value.connectionData!.rtmEnabled) {
+  /* if (sessionController.value.connectionData!.rtmEnabled) {
     await sessionController.value.agoraRtmChannel?.leave();
     await sessionController.value.agoraRtmClient?.logout();
-  }
+  } */
   await sessionController.value.engine?.release();
 }
 

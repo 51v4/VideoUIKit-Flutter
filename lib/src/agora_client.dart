@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/services.dart';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:agora_uikit/controllers/session_controller.dart';
 import 'package:agora_uikit/models/agora_channel_data.dart';
 import 'package:agora_uikit/models/agora_connection_data.dart';
 import 'package:agora_uikit/models/agora_rtc_event_handlers.dart';
-import 'package:agora_uikit/models/agora_rtm_channel_event_handler.dart';
-import 'package:agora_uikit/models/agora_rtm_client_event_handler.dart';
 import 'package:agora_uikit/src/enums.dart';
-import 'package:flutter/services.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../controllers/rtc_buttons.dart';
 
@@ -29,10 +29,10 @@ class AgoraClient {
   final AgoraRtcEventHandlers? agoraEventHandlers;
 
   /// [AgoraRtmClientEventHandlers] is a class that contains all the Agora RTM Client event handlers. Use it to add your own functions or methods.
-  final AgoraRtmClientEventHandler? agoraRtmClientEventHandler;
+  // final AgoraRtmClientEventHandler? agoraRtmClientEventHandler;
 
   /// [AgoraRtmChannelEventHandlers] is a class that contains all the Agora RTM channel event handlers. Use it to add your own functions or methods.
-  final AgoraRtmChannelEventHandler? agoraRtmChannelEventHandler;
+  // final AgoraRtmChannelEventHandler? agoraRtmChannelEventHandler;
 
   bool _initialized = false;
 
@@ -41,8 +41,8 @@ class AgoraClient {
     this.enabledPermission,
     this.agoraChannelData,
     this.agoraEventHandlers,
-    this.agoraRtmClientEventHandler,
-    this.agoraRtmChannelEventHandler,
+    // this.agoraRtmClientEventHandler,
+    // this.agoraRtmChannelEventHandler,
   }) : _initialized = false;
 
   /// Useful to check if [AgoraClient] is ready for further usage
@@ -84,7 +84,7 @@ class AgoraClient {
           level: Level.error.value);
     }
 
-    if (agoraConnectionData.rtmEnabled) {
+    /*  if (agoraConnectionData.rtmEnabled) {
       try {
         await _sessionController.initializeRtm(
             agoraRtmClientEventHandler ?? AgoraRtmClientEventHandler());
@@ -92,7 +92,7 @@ class AgoraClient {
         log("Error while initializing Agora RTM SDK. ${e.toString()}",
             level: Level.error.value);
       }
-    }
+    } */
 
     if (agoraChannelData?.clientRoleType ==
             ClientRoleType.clientRoleBroadcaster ||
@@ -104,7 +104,7 @@ class AgoraClient {
     }
 
     _sessionController.createEvents(
-      agoraRtmChannelEventHandler ?? AgoraRtmChannelEventHandler(),
+      // agoraRtmChannelEventHandler ?? AgoraRtmChannelEventHandler(),
       agoraEventHandlers ?? AgoraRtcEventHandlers(),
     );
 

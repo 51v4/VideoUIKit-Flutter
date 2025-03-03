@@ -1,17 +1,16 @@
 import 'dart:developer';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+
 import 'package:agora_uikit/controllers/rtc_token_handler.dart';
-import 'package:agora_uikit/controllers/rtm_controller.dart';
 import 'package:agora_uikit/controllers/session_controller.dart';
 import 'package:agora_uikit/models/agora_rtc_event_handlers.dart';
-import 'package:agora_uikit/models/agora_rtm_channel_event_handler.dart';
 import 'package:agora_uikit/models/agora_user.dart';
 import 'package:agora_uikit/src/enums.dart';
 
 Future<RtcEngineEventHandler> rtcEngineEventHandler(
   AgoraRtcEventHandlers agoraEventHandlers,
-  AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
+  // AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
   SessionController sessionController,
 ) async {
   const String tag = "AgoraVideoUIKit";
@@ -176,9 +175,9 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
     sessionController.value =
         sessionController.value.copyWith(localUid: connection.localUid);
 
-    await rtmMethods(
+/*     await rtmMethods(
         agoraRtmChannelEventHandler: agoraRtmChannelEventHandler,
-        sessionController: sessionController);
+        sessionController: sessionController); */
 
     sessionController.value = sessionController.value.copyWith(
       mainAgoraUser: AgoraUser(

@@ -3,32 +3,31 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
-import 'package:agora_rtm/agora_rtm.dart';
+import 'package:http/http.dart' as http;
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:agora_uikit/controllers/rtc_event_handlers.dart';
 import 'package:agora_uikit/controllers/rtc_token_handler.dart';
-import 'package:agora_uikit/controllers/rtm_client_event_handler.dart';
 import 'package:agora_uikit/controllers/rtm_token_handler.dart';
 import 'package:agora_uikit/models/agora_channel_data.dart';
 import 'package:agora_uikit/models/agora_connection_data.dart';
 import 'package:agora_uikit/models/agora_rtc_event_handlers.dart';
-import 'package:agora_uikit/models/agora_rtm_channel_event_handler.dart';
-import 'package:agora_uikit/models/agora_rtm_client_event_handler.dart';
 import 'package:agora_uikit/models/agora_rtm_mute_request.dart';
 import 'package:agora_uikit/models/agora_settings.dart';
 import 'package:agora_uikit/models/agora_user.dart';
 import 'package:agora_uikit/src/enums.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:permission_handler/permission_handler.dart';
 
+// Hidden some code to remove Agora RTM
 class SessionController extends ValueNotifier<AgoraSettings> {
   SessionController()
       : super(
           AgoraSettings(
             engine: createAgoraRtcEngine(),
-            agoraRtmChannel: null,
-            agoraRtmClient: null,
+            // agoraRtmChannel: null,
+            // agoraRtmClient: null,
             users: [],
             mainAgoraUser: AgoraUser(
               uid: 0,
@@ -53,7 +52,7 @@ class SessionController extends ValueNotifier<AgoraSettings> {
           ),
         );
 
-  /// Function to initialize the Agora RTM client.
+  /*  /// Function to initialize the Agora RTM client.
   Future<void> initializeRtm(
       AgoraRtmClientEventHandler agoraRtmClientEventHandler) async {
     value = value.copyWith(
@@ -66,7 +65,7 @@ class SessionController extends ValueNotifier<AgoraSettings> {
         createRtmClientEvents(agoraRtmClientEventHandler);
       });
     }
-  }
+  } */
 
   /// Function to initialize the Agora RTC engine.
   Future<void> initializeEngine(
@@ -78,7 +77,7 @@ class SessionController extends ValueNotifier<AgoraSettings> {
     log("SDK initialized: ${value.engine}", level: Level.error.value);
     // Getting SDK versions and assigning them
     SDKBuildInfo? rtcVersion = await value.engine?.getVersion();
-    AgoraVersions.staticRTM = await AgoraRtmClient.getSdkVersion();
+    // AgoraVersions.staticRTM = await AgoraRtmClient.getSdkVersion();
     if (rtcVersion?.version.toString() != null) {
       AgoraVersions.staticRTC = rtcVersion!.version.toString();
     }
@@ -90,18 +89,18 @@ class SessionController extends ValueNotifier<AgoraSettings> {
 
   /// Function to trigger all the AgoraRtcEventHandlers.
   void createEvents(
-    AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
+    // AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
     AgoraRtcEventHandlers agoraEventHandlers,
   ) async {
     value.engine?.registerEventHandler(
       await rtcEngineEventHandler(
         agoraEventHandlers,
-        agoraRtmChannelEventHandler,
+        // agoraRtmChannelEventHandler,
         this,
       ),
     );
   }
-
+/* 
   void createRtmClientEvents(
       AgoraRtmClientEventHandler agoraRtmClientEventHandler) {
     rtmClientEventHandler(
@@ -109,7 +108,7 @@ class SessionController extends ValueNotifier<AgoraSettings> {
       agoraRtmClientEventHandler: agoraRtmClientEventHandler,
       sessionController: this,
     );
-  }
+  } */
 
   /// Function to set all the channel properties.
   void setChannelProperties(AgoraChannelData agoraChannelData) async {
