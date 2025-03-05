@@ -9,12 +9,10 @@ import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:agora_uikit/controllers/rtc_event_handlers.dart';
 import 'package:agora_uikit/controllers/rtc_token_handler.dart';
 import 'package:agora_uikit/controllers/rtm_token_handler.dart';
 import 'package:agora_uikit/models/agora_channel_data.dart';
 import 'package:agora_uikit/models/agora_connection_data.dart';
-import 'package:agora_uikit/models/agora_rtc_event_handlers.dart';
 import 'package:agora_uikit/models/agora_rtm_mute_request.dart';
 import 'package:agora_uikit/models/agora_settings.dart';
 import 'package:agora_uikit/models/agora_user.dart';
@@ -88,7 +86,7 @@ class SessionController extends ValueNotifier<AgoraSettings> {
   }
 
   /// Function to trigger all the AgoraRtcEventHandlers.
-  void createEvents(
+  /*  void createEvents(
     // AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
     AgoraRtcEventHandlers agoraEventHandlers,
   ) async {
@@ -99,7 +97,12 @@ class SessionController extends ValueNotifier<AgoraSettings> {
         this,
       ),
     );
+  } */
+
+  void createEvents(RtcEngineEventHandler eventHandler) {
+    value.engine?.registerEventHandler(eventHandler);
   }
+
 /* 
   void createRtmClientEvents(
       AgoraRtmClientEventHandler agoraRtmClientEventHandler) {

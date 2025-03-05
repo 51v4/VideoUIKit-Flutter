@@ -1,4 +1,4 @@
-import 'dart:developer';
+/* import 'dart:developer';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 
@@ -351,3 +351,4 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
         ?.call(connection, currentStats, averageStats);
   });
 }
+ */

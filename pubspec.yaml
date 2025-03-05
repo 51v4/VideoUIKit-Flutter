@@ -21,8 +21,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-dependency_overrides:
-  agora_rtc_engine: 6.3.2
 
 flutter:
   plugin:

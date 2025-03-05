@@ -9,7 +9,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:agora_uikit/controllers/session_controller.dart';
 import 'package:agora_uikit/models/agora_channel_data.dart';
 import 'package:agora_uikit/models/agora_connection_data.dart';
-import 'package:agora_uikit/models/agora_rtc_event_handlers.dart';
 import 'package:agora_uikit/src/enums.dart';
 
 import '../controllers/rtc_buttons.dart';
@@ -25,8 +24,8 @@ class AgoraClient {
   /// [AgoraChannelData] is a class that contains all the Agora channel properties.
   final AgoraChannelData? agoraChannelData;
 
-  /// [AgoraRtcEventHandlers] is a class that contains all the Agora RTC event handlers. Use it to add your own functions or methods.
-  final AgoraRtcEventHandlers? agoraEventHandlers;
+  /// [RtcEngineEventHandler] is a class that contains all the Agora RTC event handlers. Use it to add your own functions or methods.
+  final RtcEngineEventHandler? agoraEventHandlers;
 
   /// [AgoraRtmClientEventHandlers] is a class that contains all the Agora RTM Client event handlers. Use it to add your own functions or methods.
   // final AgoraRtmClientEventHandler? agoraRtmClientEventHandler;
@@ -103,9 +102,12 @@ class AgoraClient {
       await enabledPermission!.request();
     }
 
-    _sessionController.createEvents(
-      // agoraRtmChannelEventHandler ?? AgoraRtmChannelEventHandler(),
+    /* _sessionController.createEvents(
+      agoraRtmChannelEventHandler ?? AgoraRtmChannelEventHandler(),
       agoraEventHandlers ?? AgoraRtcEventHandlers(),
+    ); */
+    _sessionController.createEvents(
+      agoraEventHandlers ?? RtcEngineEventHandler(),
     );
 
     if (agoraChannelData != null) {
