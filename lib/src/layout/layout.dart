@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:agora_uikit/controllers/rtc_buttons.dart';
@@ -6,7 +8,6 @@ import 'package:agora_uikit/src/layout/floating_layout.dart';
 import 'package:agora_uikit/src/layout/grid_layout.dart';
 import 'package:agora_uikit/src/layout/one_to_one_layout.dart';
 import 'package:agora_uikit/src/layout/widgets/disabled_video_widget.dart';
-import 'package:flutter/material.dart';
 
 /// A UI class to style how the video layout looks like. Use this class to choose between the two default layouts [FloatingLayout] and [GridLayout], enable active speaker, display number of users, display mic and video state of the user.
 class AgoraVideoViewer extends StatefulWidget {
@@ -117,6 +118,9 @@ class _AgoraVideoViewerState extends State<AgoraVideoViewer> {
     return ValueListenableBuilder(
       valueListenable: widget.client.sessionController,
       builder: (BuildContext context, AgoraSettings value, Widget? child) {
+        debugPrint("Users: ${value.users.map((e) => e.uid).join(', ')}");
+        debugPrint("Local User: ${value.localUid}");
+        debugPrint("Layout: ${value.layoutType}");
         if (!widget.client.isInitialized) {
           return Center(child: CircularProgressIndicator());
         }
@@ -124,6 +128,7 @@ class _AgoraVideoViewerState extends State<AgoraVideoViewer> {
           behavior: HitTestBehavior.translucent,
           child: _returnLayoutClass(layout: value.layoutType),
           onTap: () {
+            debugPrint("Tapped");
             toggleVisible(
               value: value,
             );

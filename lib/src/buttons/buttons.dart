@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:agora_uikit/controllers/rtc_buttons.dart';
 import 'package:agora_uikit/src/buttons/cloud_recording_button.dart';
-import 'package:flutter/material.dart';
 
 /// A UI class to style how the buttons look. Use this class to add, remove or customize the buttons in your live video calling application.
 class AgoraVideoButtons extends StatefulWidget {

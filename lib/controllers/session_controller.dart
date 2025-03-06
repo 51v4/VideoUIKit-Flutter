@@ -18,6 +18,10 @@ import 'package:agora_uikit/models/agora_settings.dart';
 import 'package:agora_uikit/models/agora_user.dart';
 import 'package:agora_uikit/src/enums.dart';
 
+import '../models/agora_rtc_event_handlers.dart';
+
+import 'rtc_event_handlers.dart';
+
 // Hidden some code to remove Agora RTM
 class SessionController extends ValueNotifier<AgoraSettings> {
   SessionController()
@@ -86,7 +90,7 @@ class SessionController extends ValueNotifier<AgoraSettings> {
   }
 
   /// Function to trigger all the AgoraRtcEventHandlers.
-  /*  void createEvents(
+  void createEvents(
     // AgoraRtmChannelEventHandler agoraRtmChannelEventHandler,
     AgoraRtcEventHandlers agoraEventHandlers,
   ) async {
@@ -97,10 +101,6 @@ class SessionController extends ValueNotifier<AgoraSettings> {
         this,
       ),
     );
-  } */
-
-  void createEvents(RtcEngineEventHandler eventHandler) {
-    value.engine?.registerEventHandler(eventHandler);
   }
 
 /* 

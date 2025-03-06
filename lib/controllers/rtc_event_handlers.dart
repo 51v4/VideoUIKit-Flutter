@@ -1,4 +1,4 @@
-/* import 'dart:developer';
+import 'dart:developer';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 
@@ -301,15 +301,15 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
     agoraEventHandlers.onCameraReady?.call();
   }, onEncryptionError: (connection, errorType) {
     agoraEventHandlers.onEncryptionError?.call(connection, errorType);
-  }, onExtensionError: (provider, extension, error, message) {
-    agoraEventHandlers.onExtensionError
-        ?.call(provider, extension, error, message);
-  }, onExtensionEvent: (provider, extension, key, value) {
-    agoraEventHandlers.onExtensionEvent?.call(provider, extension, key, value);
-  }, onExtensionStarted: (provider, extension) {
-    agoraEventHandlers.onExtensionStarted?.call(provider, extension);
-  }, onExtensionStopped: (provider, extension) {
-    agoraEventHandlers.onExtensionStopped?.call(provider, extension);
+  }, onExtensionErrorWithContext: (context, error, message) {
+    agoraEventHandlers.onExtensionErrorWithContext
+        ?.call(context, error, message);
+  }, onExtensionEventWithContext: (context, key, value) {
+    agoraEventHandlers.onExtensionEventWithContext?.call(context, key, value);
+  }, onExtensionStartedWithContext: (context) {
+    agoraEventHandlers.onExtensionStartedWithContext?.call(context);
+  }, onExtensionStoppedWithContext: (context) {
+    agoraEventHandlers.onExtensionStoppedWithContext?.call(context);
   }, onIntraRequestReceived: (connection) {
     agoraEventHandlers.onIntraRequestReceived?.call(connection);
   }, onPermissionError: (permissionType) {
@@ -351,4 +351,3 @@ Future<RtcEngineEventHandler> rtcEngineEventHandler(
         ?.call(connection, currentStats, averageStats);
   });
 }
- */
