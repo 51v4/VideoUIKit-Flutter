@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:agora_uikit/controllers/rtc_buttons.dart';
 import 'package:agora_uikit/models/agora_settings.dart';
@@ -6,7 +9,6 @@ import 'package:agora_uikit/src/layout/widgets/disabled_video_widget.dart';
 import 'package:agora_uikit/src/layout/widgets/host_controls.dart';
 import 'package:agora_uikit/src/layout/widgets/number_of_users.dart';
 import 'package:agora_uikit/src/layout/widgets/user_av_state_widget.dart';
-import 'package:flutter/material.dart';
 
 class FloatingLayout extends StatefulWidget {
   final AgoraClient client;
@@ -39,7 +41,12 @@ class FloatingLayout extends StatefulWidget {
   final RenderModeType? renderModeType;
 
   final bool? useFlutterTexture;
+
   final bool? useAndroidSurfaceView;
+
+  final Color primaryColor;
+
+  final Color iconColor;
 
   const FloatingLayout({
     super.key,
@@ -55,6 +62,8 @@ class FloatingLayout extends StatefulWidget {
     this.renderModeType = RenderModeType.renderModeHidden,
     this.useAndroidSurfaceView = false,
     this.useFlutterTexture = false,
+    required this.primaryColor,
+    required this.iconColor,
   });
 
   @override
@@ -162,7 +171,7 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                       )
                                                     : widget
                                                         .disabledVideoWidget,
-                                                Positioned.fill(
+                                                /*   Positioned.fill(
                                                   child: Align(
                                                     alignment:
                                                         Alignment.topLeft,
@@ -185,7 +194,8 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                           height: 24,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Colors.blue,
+                                                            color: widget
+                                                                .primaryColor,
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -198,7 +208,7 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                       ),
                                                     ),
                                                   ),
-                                                ),
+                                                ), */
                                                 widget.showAVState!
                                                     ? UserAVStateWidget(
                                                         videoDisabled: widget
@@ -211,6 +221,10 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                             .sessionController
                                                             .value
                                                             .isLocalUserMuted,
+                                                        primaryColor:
+                                                            widget.primaryColor,
+                                                        iconColor:
+                                                            widget.iconColor,
                                                       )
                                                     : Container(),
                                               ],
@@ -232,7 +246,7 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Align(
+                                                        /*  Align(
                                                           alignment:
                                                               Alignment.topLeft,
                                                           child: Padding(
@@ -273,7 +287,7 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
+                                                        ), */
                                                         Align(
                                                           alignment: Alignment
                                                               .topRight,
@@ -323,7 +337,12 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                               .sessionController
                                                               .value
                                                               .users[index]
-                                                              .muted)
+                                                              .muted,
+                                                          iconColor:
+                                                              widget.iconColor,
+                                                          primaryColor: widget
+                                                              .primaryColor,
+                                                        )
                                                       : Container(),
                                                 ],
                                               ),
@@ -351,7 +370,7 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Align(
+                                                        /* Align(
                                                           alignment:
                                                               Alignment.topLeft,
                                                           child: Padding(
@@ -392,7 +411,7 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
+                                                        ), */
                                                         Align(
                                                           alignment: Alignment
                                                               .topRight,
@@ -437,7 +456,12 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                                               .sessionController
                                                               .value
                                                               .users[index]
-                                                              .muted)
+                                                              .muted,
+                                                          primaryColor: widget
+                                                              .primaryColor,
+                                                          iconColor:
+                                                              widget.iconColor,
+                                                        )
                                                       : Container(),
                                                 ],
                                               ),
@@ -639,22 +663,26 @@ class _FloatingLayoutState extends State<FloatingLayout> {
                                           MicState.muted
                                       ? Text(
                                           "Unmute",
-                                          style: TextStyle(color: Colors.blue),
+                                          style: TextStyle(
+                                              color: widget.primaryColor),
                                         )
                                       : Text(
                                           "Mute",
-                                          style: TextStyle(color: Colors.blue),
+                                          style: TextStyle(
+                                              color: widget.primaryColor),
                                         )
                                   : widget.client.sessionController.value
                                               .cameraRequest ==
                                           CameraState.disabled
                                       ? Text(
                                           "Enable",
-                                          style: TextStyle(color: Colors.blue),
+                                          style: TextStyle(
+                                              color: widget.primaryColor),
                                         )
                                       : Text(
                                           "Disable",
-                                          style: TextStyle(color: Colors.blue),
+                                          style: TextStyle(
+                                              color: widget.primaryColor),
                                         ),
                             )
                           ],

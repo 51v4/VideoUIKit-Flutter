@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:agora_uikit/controllers/rtc_buttons.dart';
 import 'package:agora_uikit/models/agora_settings.dart';
@@ -42,6 +43,10 @@ class AgoraVideoViewer extends StatefulWidget {
   /// Render mode for local and remote video
   final RenderModeType renderModeType;
 
+  final Color primaryColor;
+
+  final Color iconColor;
+
   const AgoraVideoViewer({
     super.key,
     required this.client,
@@ -55,6 +60,8 @@ class AgoraVideoViewer extends StatefulWidget {
     this.enableHostControls = false,
     this.showNumberOfUsers = false,
     this.renderModeType = RenderModeType.renderModeHidden,
+    this.primaryColor = Colors.blueAccent,
+    this.iconColor = Colors.white,
   });
 
   @override
@@ -83,6 +90,8 @@ class _AgoraVideoViewerState extends State<AgoraVideoViewer> {
           enableHostControl: widget.enableHostControls,
           showNumberOfUsers: widget.showNumberOfUsers,
           renderModeType: widget.renderModeType,
+          primaryColor: widget.primaryColor,
+          iconColor: widget.iconColor,
         );
       case Layout.grid:
         return GridLayout(
@@ -109,6 +118,8 @@ class _AgoraVideoViewerState extends State<AgoraVideoViewer> {
           enableHostControl: widget.enableHostControls,
           showNumberOfUsers: widget.showNumberOfUsers,
           renderModeType: widget.renderModeType,
+          primaryColor: widget.primaryColor,
+          iconColor: widget.iconColor,
         );
     }
   }
@@ -120,7 +131,8 @@ class _AgoraVideoViewerState extends State<AgoraVideoViewer> {
       builder: (BuildContext context, AgoraSettings value, Widget? child) {
         debugPrint("Users: ${value.users.map((e) => e.uid).join(', ')}");
         debugPrint("Local User: ${value.localUid}");
-        debugPrint("Layout: ${value.layoutType}");
+        debugPrint("Main User: ${value.mainAgoraUser}");
+
         if (!widget.client.isInitialized) {
           return Center(child: CircularProgressIndicator());
         }

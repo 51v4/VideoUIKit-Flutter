@@ -19,7 +19,7 @@ class _NumberOfUsersState extends State<NumberOfUsers> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: Colors.black54,
+        // color: Colors.black54,
         padding: const EdgeInsets.all(3),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -27,6 +27,7 @@ class _NumberOfUsersState extends State<NumberOfUsers> {
             Icon(
               Icons.remove_red_eye_outlined,
               color: Colors.white,
+              size: 18,
             ),
             Text(
               ' ${widget.userCount + 1}',

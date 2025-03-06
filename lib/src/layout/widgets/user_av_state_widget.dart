@@ -1,15 +1,20 @@
-import 'package:agora_uikit/src/enums.dart';
 import 'package:flutter/material.dart';
+
+import 'package:agora_uikit/src/enums.dart';
 
 /// Displays the camera and microphone state of local and remote user. Currently, this mode is only available in the [Layout.floating].
 class UserAVStateWidget extends StatefulWidget {
   final bool videoDisabled;
   final bool muted;
+  final Color primaryColor;
+  final Color iconColor;
 
   const UserAVStateWidget({
     super.key,
     required this.videoDisabled,
     required this.muted,
+    required this.primaryColor,
+    required this.iconColor,
   });
 
   @override
@@ -29,7 +34,9 @@ class _UserAVStateWidgetState extends State<UserAVStateWidget> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: widget.videoDisabled ? Colors.blue : Colors.white,
+                  color: widget.videoDisabled
+                      ? widget.primaryColor
+                      : widget.iconColor,
                   shape: BoxShape.circle,
                 ),
                 child: Padding(
@@ -37,12 +44,12 @@ class _UserAVStateWidgetState extends State<UserAVStateWidget> {
                   child: widget.videoDisabled
                       ? Icon(
                           Icons.videocam_off,
-                          color: Colors.white,
+                          color: widget.iconColor,
                           size: 15,
                         )
                       : Icon(
                           Icons.videocam,
-                          color: Colors.blue,
+                          color: widget.primaryColor,
                           size: 15,
                         ),
                 ),
@@ -52,7 +59,7 @@ class _UserAVStateWidgetState extends State<UserAVStateWidget> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: widget.muted ? Colors.blue : Colors.white,
+                  color: widget.muted ? widget.primaryColor : widget.iconColor,
                   shape: BoxShape.circle,
                 ),
                 child: Padding(
@@ -60,12 +67,12 @@ class _UserAVStateWidgetState extends State<UserAVStateWidget> {
                   child: widget.muted
                       ? Icon(
                           Icons.mic_off,
-                          color: Colors.white,
+                          color: widget.iconColor,
                           size: 15,
                         )
                       : Icon(
                           Icons.mic,
-                          color: Colors.blue,
+                          color: widget.primaryColor,
                           size: 15,
                         ),
                 ),
