@@ -131,16 +131,16 @@ class _AgoraVideoViewerState extends State<AgoraVideoViewer> {
       builder: (BuildContext context, AgoraSettings value, Widget? child) {
         debugPrint("Users: ${value.users.map((e) => e.uid).join(', ')}");
         debugPrint("Local User: ${value.localUid}");
-        debugPrint("Main User: ${value.mainAgoraUser}");
+        debugPrint("Main User: ${value.mainAgoraUser.uid}");
 
         if (!widget.client.isInitialized) {
           return Center(child: CircularProgressIndicator());
         }
+
         return GestureDetector(
           behavior: HitTestBehavior.translucent,
           child: _returnLayoutClass(layout: value.layoutType),
           onTap: () {
-            debugPrint("Tapped");
             toggleVisible(
               value: value,
             );

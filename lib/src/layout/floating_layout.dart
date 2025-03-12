@@ -96,10 +96,14 @@ class _FloatingLayoutState extends State<FloatingLayout> {
     return AgoraVideoView(
       controller: VideoViewController.remote(
         rtcEngine: widget.client.sessionController.value.engine!,
-        canvas: VideoCanvas(uid: uid, renderMode: widget.renderModeType),
+        canvas: VideoCanvas(
+          uid: uid,
+          renderMode: widget.renderModeType,
+        ),
         connection: RtcConnection(
-            channelId: widget
-                .client.sessionController.value.connectionData!.channelName),
+          channelId:
+              widget.client.sessionController.value.connectionData!.channelName,
+        ),
         useFlutterTexture: widget.useFlutterTexture!,
         useAndroidSurfaceView: widget.useAndroidSurfaceView!,
       ),

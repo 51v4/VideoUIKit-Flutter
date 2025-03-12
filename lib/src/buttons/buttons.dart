@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:agora_uikit/controllers/rtc_buttons.dart';
+import 'package:agora_uikit/extensions/list.dart';
 import 'package:agora_uikit/src/buttons/cloud_recording_button.dart';
 
 /// A UI class to style how the buttons look. Use this class to add, remove or customize the buttons in your live video calling application.
@@ -137,6 +138,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
           Container(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 10),
               physics: BouncingScrollPhysics(),
               child: Container(
                 child: widget.enabledButtons == null
@@ -147,20 +149,18 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
                           _disconnectCallButton(),
                           _switchCameraButton(),
                           _disableVideoButton(),
-                          widget.cloudRecordingEnabled!
-                              ? CloudRecordingButton(
-                                  client: widget.client,
-                                )
-                              : Container(),
-                          widget.addScreenSharing!
-                              ? _screenSharingButton()
-                              : Container(),
+                          if (widget.cloudRecordingEnabled == true)
+                            CloudRecordingButton(
+                              client: widget.client,
+                            ),
+                          if (widget.addScreenSharing == true)
+                            _screenSharingButton(),
                           if (widget.extraButtons != null)
                             for (var i = 0;
                                 i < widget.extraButtons!.length;
                                 i++)
                               widget.extraButtons![i],
-                        ],
+                        ].withHorizontalSeparation(10),
                       )
                     : Row(
                         children: [
@@ -189,7 +189,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
                                 i < widget.extraButtons!.length;
                                 i++)
                               widget.extraButtons![i]
-                        ],
+                        ].withHorizontalSeparation(10),
                       ),
               ),
             ),
@@ -205,6 +205,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
             onPressed: () =>
                 shareScreen(sessionController: widget.client.sessionController),
             child: widget.screenSharingButtonWidget,
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           )
         : RawMaterialButton(
             onPressed: () =>
@@ -224,6 +225,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
                 ? widget.primaryColor
                 : widget.iconColor,
             padding: const EdgeInsets.all(12.0),
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           );
   }
 
@@ -234,6 +236,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
               sessionController: widget.client.sessionController,
             ),
             child: widget.muteButtonChild,
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           )
         : RawMaterialButton(
             onPressed: () => toggleMute(
@@ -254,6 +257,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
                 ? widget.primaryColor
                 : widget.iconColor,
             padding: const EdgeInsets.all(12.0),
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           );
   }
 
@@ -262,6 +266,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
         ? RawMaterialButton(
             onPressed: () => _onCallEnd(context),
             child: widget.disconnectButtonChild,
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           )
         : RawMaterialButton(
             onPressed: () => _onCallEnd(context),
@@ -270,6 +275,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
             elevation: 2.0,
             fillColor: Colors.redAccent,
             padding: const EdgeInsets.all(15.0),
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           );
   }
 
@@ -280,6 +286,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
               sessionController: widget.client.sessionController,
             ),
             child: widget.switchCameraButtonChild,
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           )
         : RawMaterialButton(
             onPressed: () => switchCamera(
@@ -294,6 +301,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
             elevation: 2.0,
             fillColor: widget.iconColor,
             padding: const EdgeInsets.all(12.0),
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           );
   }
 
@@ -304,6 +312,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
               sessionController: widget.client.sessionController,
             ),
             child: widget.disableVideoButtonChild,
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           )
         : RawMaterialButton(
             onPressed: () => toggleCamera(
@@ -325,6 +334,7 @@ class _AgoraVideoButtonsState extends State<AgoraVideoButtons> {
                     ? widget.primaryColor
                     : widget.iconColor,
             padding: const EdgeInsets.all(12.0),
+            constraints: const BoxConstraints(minWidth: 36.0, minHeight: 36.0),
           );
   }
 
